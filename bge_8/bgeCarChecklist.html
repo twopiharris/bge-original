@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blender Game Engine Car Setup Checklist</title>
+</head>
+<body>
+  <h1>Blender Game Engine Car Setup Checklist</h1>
+  
+  <h2>Car body mesh</h2>
+  <ul>
+    <li>Build car body without wheels</li>
+    <li>rename car body</li>
+    <li>center of body near bottom center of frame</li>
+  </ul>
+  
+  <h2>Car body physics</h2>
+  <ul>
+    <li>Game engine physics</li>
+    <li>physics type - rigid body</li>
+    <li>no sleeping - true</li>
+    <li>collision bounds - true</li>
+    <li>collision type - convex hull</li>
+    <li>mass - @400</li>
+  </ul>
+  
+  <h2>Wheels</h2>
+  <ul>
+    <li>Wheel meshes NOT parented to body</li>
+    <li>placement doesn't matter</li>
+    <li>note radius for later use</li>
+    <li>physics type - no collision</li>
+    <li>name all wheels:
+      <ul>
+        <li>FLWheel</li>
+        <li>FRWheel</li>
+        <li>RLWheel</li>
+        <li>RRWheel</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>Car body game properties</h2>
+  <ul>
+    <li>turn (float 0.0)</li>
+    <li>speed (float 0.0)</li>
+  </ul>
+  
+  <h2>Add scripts to text editor</h2>
+  <ul>
+    <li>CarSetup.py</li>
+    <li>Suspension.py</li>
+    <li>Powertrain.py</li>
+  </ul>
+  
+  <h2>Logic State 1</h2>
+  <ul>
+    <li>Always sensor (no pulse mode)</li>
+    <li>always to and controller to state actuator</li>
+    <li>state actuator - go to state 2</li>
+    <li>set state 1 as initial state</li>
+    <li>always to python controller - CarSetup.py</li>
+  </ul>
+  
+  <h2>Test carSetup</h2>
+  <ul>
+    <li>Add ground plane</li>
+    <li>Play game</li>
+    <li>Wheels should snap in place</li>
+    <li>car should fall to ground</li>
+    <li>In CarSetup.py, adjust tire positions</li>
+    <li>In CarSetup.py, adjust tire radius</li>
+    <li>Wait for other CarSetup adjustments</li>
+  </ul>
+  
+  <h2>Logic State 2</h2>
+  <ul>
+    <li>Always sensor (no pulse mode)</li>
+    <li>always to and controller to state actuator</li>
+    <li>state actuator - go to state 3</li>
+    <li>always to python controller - Suspension.py</li>
+  </ul>
+  
+  <h2>Logic State 3</h2>
+  <ul>
+    <li>Always sensor - pulse mode</li>
+    <li>Always to python controller - Powertrain.py</li>
+    <li>Add input sensors with pulse mode on:
+      <ul>
+        <li>Gas</li>
+        <li>Reverse</li>
+        <li>Brake</li>
+        <li>EBrake</li>
+        <li>Left</li>
+        <li>Right</li>
+      </ul>
+    </li>
+    <li>All sensors to Powertrain.py</li>
+  </ul>
+  
+  <h2>Test and adjust</h2>
+  <ul>
+    <li>Test turning, stopping, acceleration</li>
+    <li>Adjust various values to taste</li>
+    <li>power, speed limits, braking in Powertrain.py</li>
+    <li>tire position, radius, steering in CarSetup.py</li>
+    <li>Grip, suspensionStiffness, and RollInfluence in Suspension.py</li>
+  </ul>
+  
+</body>
+</html>
